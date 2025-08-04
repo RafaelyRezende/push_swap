@@ -4,7 +4,9 @@ Create an efficient (smallest number of operations) sorting algorithm using two 
 <br>
 
 Crucial Developer Milestone: Writing sorting algorithms is a fundamental step in a developer's journey, often serving as their first introduction to the concept of computational complexity.
+
 Interview Relevance: Sorting algorithms and their complexities are common and important topics frequently encountered in technical job interviews.
+
 Project Learning Objectives: The key goals of this project are to develop:
 
     Rigor in approach.
