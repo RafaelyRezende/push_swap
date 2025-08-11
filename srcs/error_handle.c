@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/11 09:54:08 by rluis-ya         ###   ########.fr       */
+/*   Created: 2025/08/11 09:03:47 by rluis-ya          #+#    #+#             */
+/*   Updated: 2025/08/11 09:09:40 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_error_alpha(char *str)
 {
-	int	i;
-	int	size_numbers;
-	int	*numbers;
-
-	size_numbers = -1;
-	if (argc <= 2)
-		return (-1);
-	if (argc > 2)
+	while (*str)
 	{
-		numbers = ft_parser(argv, &size_numbers);
-		if (!numbers)
-		{
-			ft_printf("Error: only numbers allowed.");
+		if (ft_isalpha(*str))
 			return (-1);
-		}
+		else
+			str++;
 	}
-	i = 0;
-	while (i < size_numbers)
-	{
-		ft_printf("%d\n", numbers[i]);
-		i++;
-	}
-	free(numbers);
 	return (0);
 }
