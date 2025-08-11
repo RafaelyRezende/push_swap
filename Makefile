@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft
+CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft -g
 
 NAME = push_swap
 
@@ -26,12 +26,12 @@ $(OBJ_DIR):
 $(LFT):
 	$(MAKE) -C libft
 
-$(NAME): $(LFT) $(PATH_OBJS) | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(LFT) $^ -o $@
+$(NAME): $(PATH_OBJS) $(LFT) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $^ -o $@
 	@echo "🚀 Ready."
 
-$(OBJ_DIR)/%.o: $(LFT) $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(LFT) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
