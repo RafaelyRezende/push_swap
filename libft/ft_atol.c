@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 08:54:43 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/11 14:05:35 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:05:38 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ static int	ft_isspace(int c)
 		return (FALSE);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	sign;
-	int	res;
+	long		sign;
+	long long	res;
 
 	sign = 1;
 	res = 0;
-	if (!ft_strcmp("-2147483648", nptr))
-		return (-2147483648);
 	while (ft_isspace(*nptr))
 		nptr++;
 	while (*nptr == '-' || *nptr == '+')
@@ -46,27 +44,7 @@ int	ft_atoi(const char *nptr)
 		res = res * 10 + *nptr - '0';
 		nptr++;
 	}
-	return (sign * res);
+	if (res < -2147483648 || res > 2147483648)
+		return (0);
+	return ((long)(sign * res));
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-int	main(void)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	char	**str;
-
-	str = {"-1", "0", "        11234", "      -1239", "-2147483648", NULL};
-	while (str[i])
-	{
-		j = 0;
-		while ()
-		if (atoi(argv[i][j]) != ft_atoi(argv[i][j]))
-			exit(EXIT_FAILURE);
-		i++
-	}
-}
-*/

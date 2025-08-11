@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft -g
+CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
