@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 08:54:43 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/11 14:05:38 by rluis-ya         ###   ########.fr       */
+/*   Created: 2025/08/12 11:37:41 by rluis-ya          #+#    #+#             */
+/*   Updated: 2025/08/12 11:39:33 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	unsigned char	ch;
 
@@ -21,30 +21,4 @@ static int	ft_isspace(int c)
 		return (TRUE);
 	else
 		return (FALSE);
-}
-
-long	ft_atoi(const char *nptr)
-{
-	long		sign;
-	long long	res;
-
-	sign = 1;
-	res = 0;
-	while (ft_isspace(*nptr))
-		nptr++;
-	while (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-		break ;
-	}
-	while (ft_isdigit(*nptr) && *nptr)
-	{
-		res = res * 10 + *nptr - '0';
-		nptr++;
-	}
-	if (res < -2147483648 || res > 2147483648)
-		return (0);
-	return ((long)(sign * res));
 }

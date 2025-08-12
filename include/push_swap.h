@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/11 14:02:23 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/12 17:44:50 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "libft.h"
 
 typedef struct s_node
@@ -26,8 +27,8 @@ typedef struct s_node
 
 typedef struct s_stack
 {
-	t_node	**stack_a;
-	t_node	**stack_b;
+	t_node	*stack_a;
+	t_node	*stack_b;
 }	t_stack;
 /******************************************************************************
  *************************    FUNCTIONS    ************************************
