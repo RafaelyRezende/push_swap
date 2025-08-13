@@ -6,12 +6,12 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/13 19:27:37 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/13 20:37:30 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBPARSER_H
-# define LIBPARSER_H
+#ifndef LIBPUSHSWAP_H
+# define LIBPUSHSWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
