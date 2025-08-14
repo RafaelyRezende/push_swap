@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/11 09:54:08 by rluis-ya         ###   ########.fr       */
+/*   Created: 2025/08/11 09:03:47 by rluis-ya          #+#    #+#             */
+/*   Updated: 2025/08/13 18:03:10 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libparser.h"
 
-int	main(int argc, char **argv)
+void	ft_exit_split(char **split)
 {
 	int	i;
-	int	size_numbers;
-	int	*numbers;
 
-	size_numbers = -1;
-	if (argc <= 2)
-		return (-1);
-	if (argc > 2)
-	{
-		numbers = ft_parser(argv, &size_numbers);
-		if (!numbers)
-		{
-			ft_printf("Error: only numbers allowed.");
-			return (-1);
-		}
-	}
 	i = 0;
-	while (i < size_numbers)
-	{
-		ft_printf("%d\n", numbers[i]);
-		i++;
-	}
-	free(numbers);
-	return (0);
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
+void	ft_exit_clean(char **split, long *arr_nums)
+{
+	if (arr_nums)
+		free(arr_nums);
+	if (split)
+		ft_exit_split(split);
 }

@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
+#    Updated: 2025/08/13 18:02:25 by rluis-ya         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft -g
+CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
@@ -10,40 +22,35 @@ NAME = push_swap
 
 SRC_DIR = srcs
 
-OBJ_DIR = objs
+PARSER_DIR = $(SRC_DIR)/parser
 
-SRCS = main.c utils.c error_handle.c
+TRASH_DIR = $(SRC_DIR)/trash
 
-OBJS = $(SRCS:.c=.o)
+SRCS_PARSER = parser.c parser_utils.c
 
-PATH_SRCS = $(patsubst %,$(SRC_DIR)/%,$(SRCS))
+SRCS_TRASH = error_handle.c 
 
-PATH_OBJS = $(patsubst %,$(OBJ_DIR)/%,$(OBJS))
+PATH_PARSER = $(patsubst %,$(PARSER_DIR)/%,$(SRCS_PARSER))
+
+PATH_TRASH = $(patsubst %,$(TRASH_DIR)/%,$(SRCS_TRASH))
 
 LFT = libft/libft.a
 
 all: $(NAME)
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
 $(LFT):
 	$(MAKE) -C libft
 
-$(NAME): $(PATH_OBJS) $(LFT) | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $^ -o $@
+$(NAME): $(PATH_PARSER) $(PATH_TRASH) $(LFT)
+	$(CC) $(CFLAGS) main.c $^ -o $@
 	@echo "🚀 Ready."
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
 
 debug: fclean
 	$(MAKE) DEBUG=1
 
 clean:
-	@rm -rf $(OBJ_DIR)
 	@$(MAKE) clean -C libft
-	@echo "🧹 Cleaned $(OBJ_DIR)."
+	@echo "🧹 Cleaned."
 
 fclean: clean
 	@rm -f $(NAME)
