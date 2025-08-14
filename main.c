@@ -6,11 +6,11 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/13 20:22:49 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:44:17 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libparser.h"
+#include "libpushswap.h"
 
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
@@ -34,7 +34,8 @@ void	ft_init_short(t_env *this, char **av)
 static
 void	ft_init_long(t_env *this, char **av)
 {
-	int	i;
+	int			i;
+	long long	l_tmp;
 
 	i = 0;
 	this->size = ft_split_size(av) - 1;
@@ -43,13 +44,17 @@ void	ft_init_long(t_env *this, char **av)
 		return (ft_putstr_fd("Error\n", 2));
 	while (i < this->size)
 	{
-		this->nums[i] = ft_strtol(av[i + 1]);
-		if (ft_isdup(this->nums[i], this->nums, this->size))
+		l_tmp = ft_strtol(av[i + 1]);
+		if (l_tmp == LONG_MAX)
+			return(ft_putstr_fd("Error\n", 2));
+		this->nums[i] = (int)l_tmp;
+		if (ft_isdup(this->nums[i], this->nums, i) && i != 0)
 		{
 			free(this->nums);
 			this->nums = NULL;
 			return (ft_putstr_fd("Error\n", 2));
 		}
+		i++;
 	}
 }
 
