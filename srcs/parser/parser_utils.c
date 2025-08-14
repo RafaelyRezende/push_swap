@@ -6,7 +6,7 @@
 /*   By: rluis-ya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:23:32 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/14 11:37:22 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/14 12:56:21 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ long long	ft_strtol(const char *nptr)
 
 int	ft_isdup(int n1, int *set, int size)
 {
-	while (--size >= 0)
+	int	i;
+
+	i = 0;
+	while (i < size)
 	{
-		if (n1 == set[size])
+		if (n1 == set[i])
 			return (-1);
+		i++;
 	}
 	return (0);
 }
