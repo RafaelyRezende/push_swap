@@ -6,12 +6,13 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/13 20:22:49 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:30:40 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libparser.h"
+#include "libpushswap.h"
 
+static void ft_init_env(t_env *env);
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
@@ -20,7 +21,29 @@ int	main(int argc, char **argv)
 {
 	t_env	this;
 
-	return (ft_check_args(argc, argv, &this));
+	ft_init_env(&this);
+	if (ft_check_args(argc, argv, &this))
+		return (-1);
+	if (ft_create_piles(&this))
+		return (-1);
+	ft_print_stack(this.pile->head_a);
+	free(this.nums);
+	return (0);
+}
+
+static
+void ft_init_env(t_env *env)
+{
+	if (!env)
+		return;
+	env->pile = NULL;
+	env->nums = NULL;
+	env->size = 0;
+	env->pile = ft_calloc(1, sizeof(t_piles));
+	if (!env->pile)
+		ft_exit_error("Memory allocation failed\n");
+	env->pile->head_a = NULL;
+	env->pile->head_b = NULL;
 }
 
 static
@@ -59,15 +82,11 @@ int	ft_check_args(int ac, char **av, t_env *this)
 	if (ac == 2)
 	{
 		ft_init_short(this, av);
-		if (this->nums)
-			free(this->nums);
 		return (0);
 	}
 	if (ac > 2)
 	{
 		ft_init_long(this, av);
-		if (this->nums)
-			free(this->nums);
 		return (0);
 	}
 	return (-1);
