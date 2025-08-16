@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 15:17:21 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 19:29:12 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void		ft_exit_error(char *msg);
 void		ft_cleanup_node(t_node **node_addr);
 void		ft_cleanup_stack(t_node **head);
 void		ft_cleanup_env(t_env *env);
+int			ft_swap(t_node **head);
 #endif

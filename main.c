@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 15:17:36 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 19:29:39 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,33 @@ static void ft_init_env(t_env *env);
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
+static void	ft_display(t_env *env);
 
 int	main(int argc, char **argv)
 {
 	t_env	this;
+	char	*buff;
 
 	ft_init_env(&this);
+	buff = NULL;
 	if (ft_check_args(argc, argv, &this))
 		return (-1);
 	if (ft_create_piles(&this))
 		return (-1);
-	ft_print_stack(this.pile->head_a);
+	ft_display(&this);
+	ft_swap(&this.pile->head_a);
+	ft_display(&this);
 	ft_cleanup_env(&this);
 	return (0);
+}
+
+static
+void	ft_display(t_env *env)
+{
+	ft_printf("Stack A\n\n");
+	ft_print_stack(env->pile->head_a);
+	ft_printf("\nStack B\n\n");
+	ft_print_stack(env->pile->head_b);
 }
 
 static

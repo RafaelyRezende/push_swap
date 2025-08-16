@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/08/15 12:08:52 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/08/16 18:39:31 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS_PARSER = parser.c parser_utils.c
 
 SRCS_TRASH = error_handle.c 
 
-SRCS_SM = moves.c
+SRCS_SM = moves.c moves_utils.c
 
 PATH_PARSER = $(patsubst %,$(PARSER_DIR)/%,$(SRCS_PARSER))
 
