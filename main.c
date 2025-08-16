@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 19:29:39 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:47:35 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,20 @@ static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
 static void	ft_display(t_env *env);
+static void	ft_loop(t_env *env);
+static void ft_clear_screen(void);
 
 int	main(int argc, char **argv)
 {
 	t_env	this;
-	char	*buff;
 
 	ft_init_env(&this);
-	buff = NULL;
 	if (ft_check_args(argc, argv, &this))
 		return (-1);
 	if (ft_create_piles(&this))
 		return (-1);
 	ft_display(&this);
-	ft_swap(&this.pile->head_a);
-	ft_display(&this);
+	ft_loop(&this);
 	ft_cleanup_env(&this);
 	return (0);
 }
@@ -39,9 +38,9 @@ int	main(int argc, char **argv)
 static
 void	ft_display(t_env *env)
 {
-	ft_printf("Stack A\n\n");
+	ft_printf("\t\tStack A\n\n");
 	ft_print_stack(env->pile->head_a);
-	ft_printf("\nStack B\n\n");
+	ft_printf("\n\t\tStack B\n\n");
 	ft_print_stack(env->pile->head_b);
 }
 
@@ -104,4 +103,64 @@ int	ft_check_args(int ac, char **av, t_env *this)
 		return (0);
 	}
 	return (-1);
+}
+
+static
+void	ft_loop(t_env *env)
+{
+	char	*buff;
+	char	*prev_move;
+
+	prev_move = NULL;
+	while (1)
+	{
+		ft_clear_screen();
+		ft_display(env);
+		buff = NULL;
+
+		if (prev_move)
+			ft_printf("Previous move: %s | ", prev_move);
+		ft_printf("Next move: ");
+		buff = get_next_line(0);
+		if (!buff || !ft_strcmp(buff, "exit\n") || !ft_strcmp(buff, "q\n"))
+		{
+			free(prev_move);
+			free(buff);
+			break ;
+		}
+		if (!ft_strcmp(buff, "sa\n") || !ft_strcmp(buff, "sb\n") ||
+			!ft_strcmp(buff, "ss\n") || !ft_strcmp(buff, "pa\n") ||
+			!ft_strcmp(buff, "pb\n"))
+		{
+			free(prev_move);
+			prev_move = strndup(buff, ft_strlen(buff) - 1);
+			if (!ft_strcmp(buff, "sa\n"))
+				ft_swap(&env->pile->head_a);
+			if (!ft_strcmp(buff, "sb\n"))
+				ft_swap(&env->pile->head_b);
+			if (!ft_strcmp(buff, "ss\n"))
+			{
+				ft_swap(&env->pile->head_a);
+				ft_swap(&env->pile->head_b);
+			}
+			if (!ft_strcmp(buff, "pa\n"))
+				ft_push(&env->pile->head_b, &env->pile->head_a);
+			if (!ft_strcmp(buff, "pb\n"))
+				ft_push(&env->pile->head_a, &env->pile->head_b);
+		}
+		else
+		{
+			ft_printf("Invalid move. Use sa, sb, ss, pa, pb.\n");
+			free(buff);
+			continue ;
+		}
+		free(buff);
+	}
+}
+
+static
+void ft_clear_screen(void)
+{
+    printf("\033[H\033[J");  // ANSI escape: Home + Clear screen
+    fflush(stdout);
 }

@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:48:08 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 16:33:19 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:12:43 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	ft_addback_stack(t_node **head, t_node *to_add)
 	return (0);
 }
 /*
- * * Print node value one by one
- * */
+ * Print node value one by one
+ */
 void	ft_print_stack(t_node *p)
 {
 	int	i;
@@ -58,12 +58,12 @@ void	ft_print_stack(t_node *p)
 	i = 0;
 	if (!p)
 	{
-		ft_printf("NULL\n");
+		ft_printf("\t\tNULL\n");
 		return ;
 	}
 	while (p)
 	{
-		ft_printf("#%d -> %d\n", i + 1, *(p->value));
+		ft_printf("\t\t#%d -> %d\n", i + 1, *(p->value));
 		p = p->next;
 		i++;
 	}
