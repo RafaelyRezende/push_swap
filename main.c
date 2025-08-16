@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/15 17:30:40 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 15:17:36 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	if (ft_create_piles(&this))
 		return (-1);
 	ft_print_stack(this.pile->head_a);
-	free(this.nums);
+	ft_cleanup_env(&this);
 	return (0);
 }
 

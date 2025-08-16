@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/15 17:26:59 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 15:17:21 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,7 @@ int			ft_addback_stack(t_node **head, t_node *to_add);
 int			ft_create_piles(t_env *this);
 void		ft_print_stack(t_node *p);
 void		ft_exit_error(char *msg);
+void		ft_cleanup_node(t_node **node_addr);
+void		ft_cleanup_stack(t_node **head);
+void		ft_cleanup_env(t_env *env);
 #endif

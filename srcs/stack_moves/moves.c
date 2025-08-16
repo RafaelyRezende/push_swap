@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:48:08 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/15 17:38:00 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/16 15:15:47 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,38 +48,38 @@ int	ft_addback_stack(t_node **head, t_node *to_add)
 	to_add->previous = tail;
 	return (0);
 }
-
+/*
+ * * Print node value one by one
+ * */
 void	ft_print_stack(t_node *p)
 {
-	if (!p)
-		return ;
-	while (p->next)
+	while (p)
 	{
 		ft_printf("%d\n", *(p->value));
 		p = p->next;
 	}
 }
-
+/*
+ * Used only once to initialize both stacks
+ */
 int	ft_create_piles(t_env *this)
 {
 	int		i;
 	t_node	*new_node;
-	t_piles *tmp_ptr;
 
-	if (!this || !this->size)
+	if (!this || !this->nums || !this->pile || this->size <= 0)
 		return (-1);
-	tmp_ptr = this->pile;
 	i = 0;
 	while (i < this->size)
 	{
-		new_node = ft_create_node(&this->nums[i++]);
-		if (!new_node || ft_addback_stack(&tmp_ptr->head_a, new_node))
+		new_node = ft_create_node(&this->nums[i]);
+		if (!new_node || ft_addback_stack(&this->pile->head_a, new_node))
 		{
 			if (new_node)
-				free(new_node->value);
-			free(new_node);
+				ft_cleanup_stack(&this->pile->head_a);
 			return (-1);
 		}
+		i++;
 	}
 	return (0);
 }
