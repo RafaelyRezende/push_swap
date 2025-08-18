@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:33:59 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 22:05:19 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:01:38 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,39 @@ void	ft_push(t_node **src, t_node **dst)
 	if (*dst)
 		(*dst)->previous = node_to_move;
 	*dst = node_to_move;
+}
+
+void	ft_rotate(t_node **head)
+{
+	t_node	*first;
+	t_node	*last;
+
+	if (!head || !*head || !(*head)->next)
+		return ;
+	first = *head;
+	*head = first->next;
+	(*head)->previous = NULL;
+	last = (*head);
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	first->previous = last;
+	first->next = NULL;
+}
+
+void	ft_reverse_rotate(t_node **head)
+{
+	t_node	*second;
+	t_node	*new_last;
+
+	if (!head || !*head || !(*head)->next)
+		return ;
+	second = *head;
+	while ((*head)->next)
+		*head = (*head)->next;
+	new_last = (*head)->previous;
+	new_last->next = NULL;
+	(*head)->next = second;
+	(*head)->previous = NULL;
+	second->previous = *head;
 }

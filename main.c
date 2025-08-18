@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/16 22:47:35 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:13:45 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ void	ft_loop(t_env *env)
 {
 	char	*buff;
 	char	*prev_move;
+	int		count;
 
+	count = 0;
 	prev_move = NULL;
 	while (1)
 	{
@@ -129,8 +131,11 @@ void	ft_loop(t_env *env)
 			break ;
 		}
 		if (!ft_strcmp(buff, "sa\n") || !ft_strcmp(buff, "sb\n") ||
-			!ft_strcmp(buff, "ss\n") || !ft_strcmp(buff, "pa\n") ||
-			!ft_strcmp(buff, "pb\n"))
+			ft_strcmp(buff, "ss\n") || !ft_strcmp(buff, "pa\n") ||
+			!ft_strcmp(buff, "pb\n") || !ft_strcmp(buff, "ra\n") ||
+			!ft_strcmp(buff, "rb\n") || !ft_strcmp(buff, "rr\n") ||
+			!ft_strcmp(buff, "rra\n") || !ft_strcmp(buff, "rrb\n") ||
+			!ft_strcmp(buff, "rrr\n"))
 		{
 			free(prev_move);
 			prev_move = strndup(buff, ft_strlen(buff) - 1);
@@ -139,14 +144,24 @@ void	ft_loop(t_env *env)
 			if (!ft_strcmp(buff, "sb\n"))
 				ft_swap(&env->pile->head_b);
 			if (!ft_strcmp(buff, "ss\n"))
-			{
-				ft_swap(&env->pile->head_a);
-				ft_swap(&env->pile->head_b);
-			}
+				ft_swap_both(env);
 			if (!ft_strcmp(buff, "pa\n"))
 				ft_push(&env->pile->head_b, &env->pile->head_a);
 			if (!ft_strcmp(buff, "pb\n"))
 				ft_push(&env->pile->head_a, &env->pile->head_b);
+			if (!ft_strcmp(buff, "ra\n"))
+				ft_rotate(&env->pile->head_a);
+			if (!ft_strcmp(buff, "rb\n"))
+				ft_rotate(&env->pile->head_b);
+			if (!ft_strcmp(buff, "rr\n"))
+				ft_rotate_both(env);
+			if (!ft_strcmp(buff, "rra\n"))
+				ft_reverse_rotate(&env->pile->head_a);
+			if (!ft_strcmp(buff, "rrb\n"))
+				ft_reverse_rotate(&env->pile->head_b);
+			if (!ft_strcmp(buff, "rrr\n"))
+				ft_reverserotate_both(env);
+			count++;
 		}
 		else
 		{
