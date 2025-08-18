@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/18 18:13:45 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/18 21:39:51 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,18 @@ void	ft_loop(t_env *env)
 		ft_display(env);
 		buff = NULL;
 
+		if (ft_issorted(&env->pile->head_a) && (ft_stack_size(&env->pile->head_a) == env->size))
+		{
+			free(prev_move);
+			free(buff);
+			ft_putstr_fd("OK\n", 1);
+			break ;
+		}
 		if (prev_move)
+		{
+			ft_printf("Move count: %d | ", count);
 			ft_printf("Previous move: %s | ", prev_move);
+		}
 		ft_printf("Next move: ");
 		buff = get_next_line(0);
 		if (!buff || !ft_strcmp(buff, "exit\n") || !ft_strcmp(buff, "q\n"))

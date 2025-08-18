@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/18 18:12:26 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/18 21:04:13 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,6 @@ void		ft_reverse_rotate(t_node **head);
 void		ft_reverserotate_both(t_env *env);
 void		ft_rotate_both(t_env *env);
 void		ft_swap_both(t_env *env);
+int			ft_issorted(t_node **head);
+int			ft_stack_size(t_node **head);
 #endif

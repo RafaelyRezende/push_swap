@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:33:59 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/18 18:01:38 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/18 21:36:45 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,38 @@ void	ft_reverse_rotate(t_node **head)
 	(*head)->next = second;
 	(*head)->previous = NULL;
 	second->previous = *head;
+}
+
+int	ft_issorted(t_node **head)
+{
+	t_node	*current;
+
+	if (!head || !*head)
+		return (0);
+	current = (*head)->next;
+	while (current)
+	{
+		if (*current->value < *current->previous->value)
+			return (0);
+		else
+			current = current->next;
+	}
+	return (1);
+}
+
+int	ft_stack_size(t_node **head)
+{
+	t_node	*current;
+	int		i;
+
+	if (!head || !*head)
+		return (0);
+	current = *head;
+	i = 0;
+	while (current)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
 }
