@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/18 21:39:51 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/19 09:00:04 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	ft_loop(t_env *env)
 		{
 			free(prev_move);
 			free(buff);
+			ft_printf("Move count: %d | ", count);
 			ft_putstr_fd("OK\n", 1);
 			break ;
 		}

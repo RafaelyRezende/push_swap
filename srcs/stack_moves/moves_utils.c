@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:33:59 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/18 21:36:45 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:38:55 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_swap(t_node **head)
 		return ;
 	tmp = (*head)->next;
 	tmp->previous = NULL;
+	tmp->idx = 0;
 	if (tmp->next)
 	{
 		(*head)->next = tmp->next;
@@ -28,8 +29,10 @@ void	ft_swap(t_node **head)
 	else
 		(*head)->next = NULL;
 	(*head)->previous = tmp;
+	(*head)->idx = 1;
 	tmp->next = *head;
 	*head = tmp;
+	ft_reset_index(head);
 }
 
 void	ft_push(t_node **src, t_node **dst)
@@ -46,6 +49,8 @@ void	ft_push(t_node **src, t_node **dst)
 	if (*dst)
 		(*dst)->previous = node_to_move;
 	*dst = node_to_move;
+	ft_reset_index(src);
+	ft_reset_index(dst);
 }
 
 void	ft_rotate(t_node **head)
@@ -64,6 +69,7 @@ void	ft_rotate(t_node **head)
 	last->next = first;
 	first->previous = last;
 	first->next = NULL;
+	ft_reset_index(head);
 }
 
 void	ft_reverse_rotate(t_node **head)
@@ -81,6 +87,7 @@ void	ft_reverse_rotate(t_node **head)
 	(*head)->next = second;
 	(*head)->previous = NULL;
 	second->previous = *head;
+	ft_reset_index(head);
 }
 
 int	ft_issorted(t_node **head)
@@ -115,4 +122,20 @@ int	ft_stack_size(t_node **head)
 		current = current->next;
 	}
 	return (i);
+}
+
+void	ft_reset_index(t_node **head)
+{
+	int		i;
+	t_node	*current;
+
+	if (!head || !*head)
+		return ;
+	current = *head;
+	i = 0;
+	while (current)
+	{
+		current->idx = i++;
+		current = current->next;
+	}
 }
