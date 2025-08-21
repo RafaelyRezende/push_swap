@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/12 11:40:36 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/08/15 12:54:16 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/08/21 09:40:22 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ all: $(NAME)
 $(NAME): $(OBJS) 
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJS): $(SRCS) 
-	$(CC) $(CFLAGS) -c $(SRCS)
+%.o:%.c
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 clean:
 	rm -rf $(OBJS) $(BONUS_OBJS)
