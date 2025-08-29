@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/21 10:07:51 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:02:07 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,9 @@ void		ft_swap_both(t_env *env);
 int			ft_issorted(t_node **head);
 int			ft_stack_size(t_node **head);
 void		ft_reset_index(t_node **head);
+int			ft_calculate_rotation_cost(int stack_size, int target_position);
+int			ft_find_target_position(t_node *stack, int value);
+int			ft_isbiggest(t_node *stack, int value);
+int			ft_issmallest(t_node *stack, int value);
+int			ft_max_pos(t_node *stack);
 #endif

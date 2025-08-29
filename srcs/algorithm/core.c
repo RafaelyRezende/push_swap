@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/29 11:22:28 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:01:47 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_calculate_rotation_cost(int stack_size, int target_position)
 	return (backward_cost);
 }
 
-static
 int	ft_isbiggest(t_node *stack, int value)
 {
 	t_node	*current;
@@ -36,14 +35,13 @@ int	ft_isbiggest(t_node *stack, int value)
 	current = stack;
 	while (current)
 	{
-		if (current->value > value)
+		if (*(current->value) > value)
 			return (0);
 		current = current->next;
 	}
 	return (1);
 }
 
-static
 int	ft_issmallest(t_node *stack, int value)
 {
 	t_node	*current;
@@ -53,14 +51,13 @@ int	ft_issmallest(t_node *stack, int value)
 	current = stack;
 	while (current)
 	{
-		if (current->value < value)
+		if (*(current->value) < value)
 			return (0);
 		current = current->next;
 	}
 	return (1);
 }
 
-static
 int	ft_max_pos(t_node *stack)
 {
 	t_node	*current;
@@ -72,7 +69,7 @@ int	ft_max_pos(t_node *stack)
 	max = stack;
 	while (current)
 	{
-		if (max->value < current->value)
+		if (*(max->value) < *(current->value))
 			max = current;
 		current = current->next;
 	}
@@ -92,11 +89,9 @@ int	ft_find_target_position(t_node *stack, int value)
 	current = stack;
 	while (current && current->next)
 	{
-		if (current->value > value && current->next->value < value)
+		if (*(current->value) > value && *(current->next->value) < value)
 			return (current->next->idx);
 		current = current->next;
 	}
-	if (current && current->value > value && stack->current < value)
-		return (0);
-	return (ft_stack_size(stack));
+	return (0);
 }
