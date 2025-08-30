@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/08/30 07:10:34 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/08/30 20:22:51 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS_SM = moves.c moves_utils.c
 
 SRCS_ALGO = core.c cost.c
 
-SRCS_TESTER = unit.c
+SRCS_TESTER = unit_v2.c
 
 PATH_PARSER = $(patsubst %,$(PARSER_DIR)/%,$(SRCS_PARSER))
 

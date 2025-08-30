@@ -6,14 +6,11 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 06:55:46 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/30 11:41:26 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:04:07 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpushswap.h"
-
-static void	ft_init_cost(t_cost *cost, const char *flag);
-static int	ft_get_value_by_idx(t_node *head, int idx);
 
 void	ft_calculate_rotation_cost(int stack_size, int target_position, int *rotate, int *reverse_rotate)
 {
@@ -42,7 +39,7 @@ t_cost	ft_calculate_cost2b(t_piles *piles, int index_a)
 	int		target;
 
 	ft_init_cost(&cost, "b");
-	value = ft_get_value_by_idx(piles->head_a, index_a);
+	value = ft_get_value_by_index(piles->head_a, index_a);
 	target = ft_find_target_position_b(piles->head_b, value);
 	ft_calculate_rotation_cost(piles->size_a, index_a, &cost.ra, &cost.rra);
 	ft_calculate_rotation_cost(piles->size_b, target, &cost.rb, &cost.rrb);
@@ -57,7 +54,7 @@ t_cost	ft_calculate_cost2a(t_piles *piles, int index_b)
 	int		target;
 
 	ft_init_cost(&cost, "a");
-	value = ft_get_value_by_idx(piles->head_b, index_b);
+	value = ft_get_value_by_index(piles->head_b, index_b);
 	target = ft_find_target_position_a(piles->head_a, value);
 	ft_calculate_rotation_cost(piles->size_b, index_b, &cost.rb, &cost.rrb);
 	ft_calculate_rotation_cost(piles->size_a, target, &cost.ra, &cost.rra);
@@ -65,7 +62,6 @@ t_cost	ft_calculate_cost2a(t_piles *piles, int index_b)
 	return (cost);
 }
 
-static
 void	ft_get_total_cost(t_cost *cost)
 {
 	if (cost->ra < cost->rb)
@@ -82,8 +78,7 @@ void	ft_get_total_cost(t_cost *cost)
 	cost->pb + cost->pa;
 }
 
-static
-int	ft_get_value_by_idx(t_node *head, int idx)
+int	ft_get_value_by_index(t_node *head, int idx)
 {
 
 	int		i;
@@ -103,7 +98,6 @@ int	ft_get_value_by_idx(t_node *head, int idx)
 	return (0);
 }
 
-static
 void	ft_init_cost(t_cost *cost, const char *flag)
 {
 	cost->ra = 0;

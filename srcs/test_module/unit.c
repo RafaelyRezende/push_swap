@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/30 11:55:29 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:19:04 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,25 @@
 
 static void	ft_display(t_env *env);
 static void	ft_init_env(t_env *env);
-static void	ft_test_calculate_rotation_cost(void);
+//static void	ft_test_calculate_rotation_cost(void);
 static void	ft_test_biggest_smallest(void);
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
 static void	ft_test_find_target(void);
+static void ft_test_find_cheapest_to_b(void);
 //static void	ft_test_calculate_cost(void);
+static void ft_test_find_cheapest_to_a(void);
+static void ft_test_calculate_rotation_cost(void);
 
 int	main(void)
 {
-	ft_test_calculate_rotation_cost();
+//	ft_test_calculate_rotation_cost();
 	ft_test_biggest_smallest();
 	ft_test_find_target();
 	ft_test_find_cheapest_to_b();
+	ft_test_calculate_rotation_cost();
+	ft_test_find_cheapest_to_a();
 	return (0);
 }
 
@@ -40,7 +45,7 @@ void	ft_display(t_env *env)
 	ft_printf("\n\t\tStack B\n\n");
 	ft_print_stack(env->pile->head_b);
 }
-
+/*
 static void	ft_test_calculate_rotation_cost(void)
 {
 	ft_printf("\n\n------------TEST ROTATION COST------------\n\n");
@@ -66,7 +71,7 @@ static void	ft_test_calculate_rotation_cost(void)
 		ft_printf("KO");
 	ft_printf("\n\n------------FINISHED ROTATION COST------------\n\n");
 }
-
+*/
 static
 void ft_init_env(t_env *env)
 {
@@ -242,31 +247,19 @@ int     ft_check_args(int ac, char **av, t_env *this)
         }
         return (-1);
 }
-int     ft_find_cheapest_to_a(t_piles *piles)
-{
-        t_cost  current_cost;
-        int             idx_minimum;
-        int             min_cost;
-        int             i;
 
-        if (!piles || !piles->head_b || !piles->size_b)
-                return (-1);
-        i = 0;
-        idx_minimum = 0;
-        current_cost = ft_calculate_cost2a(piles, i);
-        min_cost = current_cost.total;
-        i = 1;
-        while (i < piles->size_b)
-        {
-                current_cost = ft_calculate_cost2a(piles, i);
-                if (current_cost.total < min_cost)
-                {
-                        min_cost = current_cost.total;
-                        idx_minimum = i;
-                }
-                i++;
-        }
-        return (idx_minimum);
+static
+void	free_stack(t_node *head)
+{
+    t_node *current = head;
+    while (current)
+    {
+        t_node *next = current->next;
+        if (current->value)
+            free(current->value);
+        free(current);
+        current = next;
+    }
 }
 
 static t_node* create_test_node(int value, int idx)
@@ -319,20 +312,6 @@ static t_node* create_stack_from_array(int *values, int size)
 }
 
 static
-void	free_stack(t_node *head)
-{
-    t_node *current = head;
-    while (current)
-    {
-        t_node *next = current->next;
-        if (current->value)
-            free(current->value);
-        free(current);
-        current = next;
-    }
-}
-
-static
 void ft_test_find_cheapest_to_b(void)
 {
     printf("Testing ft_find_cheapest_to_b...\n");
@@ -366,6 +345,61 @@ void ft_test_find_cheapest_to_b(void)
     free_stack(piles.head_a);
     free_stack(piles.head_b);
     printf("✓ ft_find_cheapest_to_b tests passed\n\n");
+}
+
+static
+void ft_test_calculate_rotation_cost(void)
+{
+
+    // Basic validation - costs should be non-negative
+    assert(cost.ra >= 0);
+    assert(cost.rra >= 0);
+    assert(cost.rb >= 0);
+    assert(cost.rrb >= 0);
+    assert(cost.total >= 0);
+    assert(cost.pa == 1); // Pushing from B to A
+    assert(cost.pb == 0);
+
+    free_stack(piles.head_a);
+    free_stack(piles.head_b);
+    printf("✓ ft_calculate_cost2a tests passed\n\n");
+}
+
+static
+void ft_test_find_cheapest_to_a(void)
+{
+    printf("Testing ft_find_cheapest_to_a...\n");
+
+    // Create test piles structure
+    t_piles piles;
+
+    // Create stack A: [1, 3, 5]
+    int values_a[] = {1, 3, 5};
+    piles.head_a = create_stack_from_array(values_a, 3);
+    piles.size_a = 3;
+
+    // Create stack B with elements: [7, 2, 4]
+    int values_b[] = {7, 2, 4};
+    piles.head_b = create_stack_from_array(values_b, 3);
+    piles.size_b = 3;
+
+    // Should find a valid index (0-2)
+    int index = ft_find_cheapest_to_a(&piles);
+    assert(index >= 0 && index < 3);
+
+    // Test edge case: empty stack B
+    free_stack(piles.head_b);
+    piles.head_b = NULL;
+    piles.size_b = 0;
+    index = ft_find_cheapest_to_a(&piles);
+    assert(index == -1); // Should return -1
+
+    // Test edge case: NULL piles
+    index = ft_find_cheapest_to_a(NULL);
+    assert(index == -1);
+
+    free_stack(piles.head_a);
+    printf("✓ ft_find_cheapest_to_a tests passed\n\n");
 }
 /*
 static

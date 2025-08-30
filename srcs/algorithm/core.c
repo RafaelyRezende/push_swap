@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/30 07:08:31 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:28:11 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_find_target_position_a(t_node *stack, int value)
 {
 	t_node	*current;
 
-	if (!stack && !stack->next)
+	if (!stack || !stack->next)
 		return (0);
 	current = stack;
 	while (current && current->next)
