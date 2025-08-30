@@ -6,11 +6,12 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/29 15:32:41 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:55:29 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpushswap.h"
+#include <assert.h>
 
 static void	ft_display(t_env *env);
 static void	ft_init_env(t_env *env);
@@ -19,11 +20,15 @@ static void	ft_test_biggest_smallest(void);
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
+static void	ft_test_find_target(void);
+//static void	ft_test_calculate_cost(void);
 
 int	main(void)
 {
 	ft_test_calculate_rotation_cost();
 	ft_test_biggest_smallest();
+	ft_test_find_target();
+	ft_test_find_cheapest_to_b();
 	return (0);
 }
 
@@ -78,25 +83,16 @@ void ft_init_env(t_env *env)
 }
 
 static
-int	ft_create_test_stack_3142(t_env *this)
+int	ft_create_test_stack_random(t_env *this, char *test_name, char *nums)
 {
 	int		argc;
-	char	*test_name;
-	char	*nums;
 	char	**argv;
 
 	argc = 2;
 	argv = malloc(sizeof(char *) * 2);
 	if (!argv)
 		return (-1);
-	test_name = malloc(sizeof(char) * 7);
-	if (!test_name)
-		return (free(argv), -1);
-	nums = malloc(sizeof(char) * 7);
-	if (!nums)
-		return (free(test_name), free(argv), -1);
-	test_name = "aaaaaaa";
-	nums = "3 1 4 2";
+	//nums = "-23 42 -8 15 -37 29 -46 11 33 -14";
 	argv[0] = test_name;
 	argv[1] = nums;
 	ft_init_env(this);
@@ -107,13 +103,45 @@ int	ft_create_test_stack_3142(t_env *this)
 	return (0);
 }
 
+static
+void	ft_test_find_target(void)
+{
+	t_env	this;
+	t_node	*current;
+
+	ft_printf("\n\n------------TEST FIND TARGET------------\n\n");
+	if (ft_create_test_stack_random(&this, "aaaaaaa", "-23 42 -8 15 -37 29 -46 11 33 -14") < 0)
+	{
+		ft_printf("Error");
+		ft_cleanup_env(&this);
+		return ;
+	}
+	ft_printf("Initial state...\n");
+	ft_display(&this);
+	ft_push(&this.pile->head_a, &this.pile->head_b);
+	ft_push(&this.pile->head_a, &this.pile->head_b);
+	ft_push(&this.pile->head_a, &this.pile->head_b);
+	ft_push(&this.pile->head_a, &this.pile->head_b);
+	ft_printf("\n--------------------------------------------\n");
+	ft_display(&this);
+	ft_printf("\n--------------------------------------------\n");
+	current = this.pile->head_a;
+	while (current)
+	{
+		ft_printf("%d\t", ft_find_target_position_b(this.pile->head_b, *(current->value)));
+		current = current->next;
+	}
+	ft_printf("\n-------------------FINISH-------------------------\n");
+	ft_cleanup_env(&this);
+}
+
 static 
 void	ft_test_biggest_smallest(void)
 {
 	t_env	this;
 
 	ft_printf("\n\n------------TEST BIGGEST------------\n\n");
-	if (ft_create_test_stack_3142(&this) < 0)
+	if (ft_create_test_stack_random(&this, "aaaaaaa", "3 1 4 2") < 0)
 	{
 		ft_printf("Error");
 		ft_cleanup_env(&this);
@@ -140,7 +168,7 @@ void	ft_test_biggest_smallest(void)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	if (ft_issmallest(this.pile->head_a, 1) == 1)
+	if (ft_issmallest(this.pile->head_a, -1) == 1)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
@@ -154,6 +182,10 @@ void	ft_test_biggest_smallest(void)
 		ft_printf("KO\n");
 	if (ft_issmallest(NULL, 1) == 0)
 		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	if (ft_max_pos(this.pile->head_a) == 2)
+		ft_printf("MAX POS: OK\n");
 	else
 		ft_printf("KO\n");
 	ft_printf("\n\n------------FINISHED------------\n\n");
@@ -210,3 +242,134 @@ int     ft_check_args(int ac, char **av, t_env *this)
         }
         return (-1);
 }
+int     ft_find_cheapest_to_a(t_piles *piles)
+{
+        t_cost  current_cost;
+        int             idx_minimum;
+        int             min_cost;
+        int             i;
+
+        if (!piles || !piles->head_b || !piles->size_b)
+                return (-1);
+        i = 0;
+        idx_minimum = 0;
+        current_cost = ft_calculate_cost2a(piles, i);
+        min_cost = current_cost.total;
+        i = 1;
+        while (i < piles->size_b)
+        {
+                current_cost = ft_calculate_cost2a(piles, i);
+                if (current_cost.total < min_cost)
+                {
+                        min_cost = current_cost.total;
+                        idx_minimum = i;
+                }
+                i++;
+        }
+        return (idx_minimum);
+}
+
+static t_node* create_test_node(int value, int idx)
+{
+    t_node *node = malloc(sizeof(t_node));
+    if (!node)
+        return NULL;
+
+    int *value_ptr = malloc(sizeof(int));
+    if (!value_ptr)
+    {
+        free(node);
+        return NULL;
+    }
+
+    *value_ptr = value;
+    node->value = value_ptr;
+    node->idx = idx;
+    node->next = NULL;
+    node->previous = NULL;
+
+    return node;
+}
+
+static t_node* create_stack_from_array(int *values, int size)
+{
+    if (size <= 0)
+        return NULL;
+
+    t_node *head = create_test_node(values[0], 0);
+    if (!head)
+        return NULL;
+
+    t_node *current = head;
+    for (int i = 1; i < size; i++)
+    {
+        t_node *new_node = create_test_node(values[i], i);
+        if (!new_node)
+        {
+            free_stack(head);
+            return NULL;
+        }
+
+        current->next = new_node;
+        new_node->previous = current;
+        current = new_node;
+    }
+
+    return head;
+}
+
+static
+void	free_stack(t_node *head)
+{
+    t_node *current = head;
+    while (current)
+    {
+        t_node *next = current->next;
+        if (current->value)
+            free(current->value);
+        free(current);
+        current = next;
+    }
+}
+
+static
+void ft_test_find_cheapest_to_b(void)
+{
+    printf("Testing ft_find_cheapest_to_b...\n");
+    
+    // Create test piles structure
+    t_piles piles;
+    
+    // Create stack A with more than 3 elements: [7, 1, 6, 3]
+    int values_a[] = {7, 1, 6, 3};
+    piles.head_a = create_stack_from_array(values_a, 4);
+    piles.size_a = 4;
+    
+    // Create stack B: [5, 2]
+    int values_b[] = {5, 2};
+    piles.head_b = create_stack_from_array(values_b, 2);
+    piles.size_b = 2;
+    
+    // Should find a valid index (0-3)
+    int index = ft_find_cheapest_to_b(&piles);
+    assert(index >= 0 && index < 4);
+    
+    // Test edge case: stack A with 3 or fewer elements
+    piles.size_a = 3;
+    index = ft_find_cheapest_to_b(&piles);
+    assert(index == -1); // Should return -1
+    
+    // Test edge case: NULL piles
+    index = ft_find_cheapest_to_b(NULL);
+    assert(index == -1);
+    
+    free_stack(piles.head_a);
+    free_stack(piles.head_b);
+    printf("✓ ft_find_cheapest_to_b tests passed\n\n");
+}
+/*
+static
+void	ft_test_calculate_cost(void)
+{
+}
+*/

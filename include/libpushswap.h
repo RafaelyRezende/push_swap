@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/29 15:02:07 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:37:19 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*previous;
 }	t_node;
+
+typedef struct s_cost
+{
+	int	ra;
+	int	rb;
+	int	rra;
+	int	rrb;
+	int	rr;
+	int	rrr;
+	int	pa;
+	int	pb;
+	int	total;
+}	t_cost;
 
 typedef struct s_piles
 {
@@ -71,9 +84,13 @@ void		ft_swap_both(t_env *env);
 int			ft_issorted(t_node **head);
 int			ft_stack_size(t_node **head);
 void		ft_reset_index(t_node **head);
-int			ft_calculate_rotation_cost(int stack_size, int target_position);
-int			ft_find_target_position(t_node *stack, int value);
+int			ft_calculate_rotation_cost(int stack_size, int target_position, int *rotate, int *reverse_rotate);
+int			ft_find_target_position_b(t_node *stack, int value);
 int			ft_isbiggest(t_node *stack, int value);
 int			ft_issmallest(t_node *stack, int value);
 int			ft_max_pos(t_node *stack);
+int			ft_find_cheapest_to_a(t_piles *piles);
+int			ft_find_cheapest_to_b(t_piles *piles);
+t_cost		ft_calculate_cost2b(t_piles *piles, int index_a);
+t_cost		ft_calculate_cost2a(t_piles *piles, int index_b);
 #endif
