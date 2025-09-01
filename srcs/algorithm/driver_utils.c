@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 09:17:48 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/01 15:23:35 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:38:54 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	ft_passthrough_a2b(t_env *this)
 	while (this->pile->size_a > 3)
 	{
 		cheapest = ft_find_cheapest_to_b(this->pile);
-		ft_execute_moves2b(this, cheapest);
+		if (cheapest != -1)
+			ft_execute_moves2b(this, cheapest);
+		else
+			break;
 	}
 }
 
@@ -51,7 +54,10 @@ void	ft_passthrough_b2a(t_env *this)
 	while (this->pile->size_b > 0)
 	{
 		cheapest = ft_find_cheapest_to_a(this->pile);
-		ft_execute_moves2a(this, cheapest);
+		if (cheapest != -1)
+			ft_execute_moves2a(this, cheapest);
+		else
+			break;
 	}
 }
 
@@ -59,20 +65,26 @@ int	ft_min_pos(t_node *stack)
 {
 	t_node	*current;
 	t_node	*min;
+	int		min_index;
+	int		current_index;
 
 	if (!stack || !stack->next)
 		return (0);
 	current = stack;
 	min = stack;
+	min_index = 0;
+	current_index = 0;
 	while (current)
 	{
 		if (*(min->value) > *(current->value))
+		{
 			min = current;
+			min_index = current_index;
+		}
 		current = current->next;
+		current_index++;
 	}
-	if (!min->next)
-		return (0);
-	return (min->idx);
+	return (min_index);
 }
 
 void	ft_end_position(t_env *this)

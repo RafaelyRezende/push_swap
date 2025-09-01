@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/01 15:22:57 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:39:37 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int	ft_max_pos(t_node *stack)
 			max = current;
 		current = current->next;
 	}
-	if (!max->next)
-		return (0);
 	return (max->idx);
 }
 
