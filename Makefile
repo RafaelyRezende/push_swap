@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/08/30 20:22:51 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/09/01 13:24:08 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRCS_TRASH = error_handle.c
 
 SRCS_SM = moves.c moves_utils.c
 
-SRCS_ALGO = core.c cost.c
+SRCS_ALGO = core.c cost.c driver.c driver_utils.c sort.c
 
 SRCS_TESTER = unit_v2.c
 
@@ -63,8 +63,8 @@ unit: fclean $(UNIT)
 $(LFT):
 	$(MAKE) -C libft
 
-$(NAME): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(LFT)
-	$(CC) $(CFLAGS) main.c $^ -o $@
+$(NAME): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)
+	$(CC) $(CFLAGS) tester_main.c $^ -o $@
 	@echo "🚀 Ready."
 
 $(UNIT): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)

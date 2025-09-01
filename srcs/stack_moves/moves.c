@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:48:08 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/19 10:05:39 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:59:45 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	ft_create_piles(t_env *this)
 		}
 		i++;
 	}
+	this->pile->size_a = this->size;
 	return (0);
 }
 

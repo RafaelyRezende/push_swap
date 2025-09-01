@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/08/30 22:01:19 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:22:07 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			ft_find_target_position_a(t_node *stack, int value);
 int			ft_isbiggest(t_node *stack, int value);
 int			ft_issmallest(t_node *stack, int value);
 int			ft_max_pos(t_node *stack);
+int			ft_min_pos(t_node *stack);
 int			ft_find_cheapest_to_a(t_piles *piles);
 int			ft_find_cheapest_to_b(t_piles *piles);
 t_cost		ft_calculate_cost2b(t_piles *piles, int index_a);
@@ -106,4 +107,11 @@ void		ft_init_cost(t_cost *cost, const char *flag);
 /* Driver functions */
 void		ft_execute_moves2b(t_env *this, int idx);
 void		ft_execute_moves2a(t_env *this, int idx);
+void		ft_driver(t_env *this);
+void		ft_init_sort(t_env *this);
+void		ft_passthrough_a2b(t_env *this);
+void		ft_passthrough_b2a(t_env *this);
+void		ft_tinysort(t_node **head_a);
+void		ft_end_position(t_env *this);
+void		ft_display(t_env *env);
 #endif
