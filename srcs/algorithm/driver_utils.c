@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 09:17:48 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 17:35:42 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:11:17 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_passthrough_b2a(t_env *this)
 	while (this->pile->size_b > 0)
 	{
 		cheapest = ft_find_cheapest_to_a(this->pile);
-		if (cheapest != -1)
+		if (cheapest != -1 && this->pile->head_b)
 			ft_execute_moves2a(this, cheapest);
 		else
 			break ;
