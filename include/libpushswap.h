@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/01 14:22:07 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:48:02 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int			ft_max_pos(t_node *stack);
 int			ft_min_pos(t_node *stack);
 int			ft_find_cheapest_to_a(t_piles *piles);
 int			ft_find_cheapest_to_b(t_piles *piles);
+//int			ft_find_min_diff(t_env *this);
 t_cost		ft_calculate_cost2b(t_piles *piles, int index_a);
 t_cost		ft_calculate_cost2a(t_piles *piles, int index_b);
 void		ft_get_total_cost(t_cost *cost);

@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/01 16:39:37 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:50:35 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ int	ft_find_target_position_a(t_node *stack, int value)
 	}
 	if (ft_isbiggest(stack, value))
 		return (current->idx + 1);
+	if (ft_issmallest(stack, value))
+		return (ft_max_pos(stack) + 1);
 	return (0);
 }

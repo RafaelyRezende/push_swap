@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:34:49 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/01 13:37:43 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:09:53 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_tinysort(t_node **head_a)
 	int	b;
 	int	c;
 
-	if (ft_issorted(head_a))
+	if (ft_issorted(head_a) || !(*head_a)->next || !(*head_a)->next->next)
 		return ;
 	a = *((*head_a)->value);
 	b = *((*head_a)->next->value);
