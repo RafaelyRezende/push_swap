@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:48:08 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 18:57:18 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:07:16 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,4 @@ int	ft_create_piles(t_env *this)
 	}
 	this->pile->size_a = this->size;
 	return (0);
-}
-
-void	ft_reverserotate_both(t_env *env)
-{
-	ft_reverse_rotate(&env->pile->head_a);
-	ft_reverse_rotate(&env->pile->head_b);
-}
-
-void	ft_rotate_both(t_env *env)
-{
-	ft_rotate(&env->pile->head_a);
-	ft_rotate(&env->pile->head_b);
-}
-
-void	ft_swap_both(t_env *env)
-{
-	ft_swap(&env->pile->head_a);
-	ft_swap(&env->pile->head_b);
 }

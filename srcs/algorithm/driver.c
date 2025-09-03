@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 20:35:59 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/03 10:18:44 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:01:53 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,8 @@ void	ft_execute_moves2a(t_env *this, int idx)
 void	ft_driver(t_env *this)
 {
 	ft_init_sort(this);
-	//ft_display(this);
 	ft_passthrough_a2b(this);
-	//ft_display(this);
 	ft_tinysort(&this->pile->head_a);
-	//ft_display(this);
 	ft_passthrough_b2a(this);
-	//ft_display(this);
 	ft_end_position(this);
-	//ft_display(this);
 }

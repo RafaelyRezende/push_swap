@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 09:03:47 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 18:37:02 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:14:18 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,4 @@ void	ft_cleanup_env(t_env *env)
 		free(env->nums);
 		env->nums = NULL;
 	}
-}
-
-void	ft_exit_error(char *msg)
-{
-	ft_putstr_fd(msg, 2);
 }

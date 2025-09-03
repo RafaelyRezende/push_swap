@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/03 12:30:07 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:15:28 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_init_env(t_env *env)
 	env->size = 0;
 	env->pile = ft_calloc(1, sizeof(t_piles));
 	if (!env->pile)
-		ft_exit_error("Memory allocation failed\n");
+		ft_printf("Memory allocation failed\n");
 	env->pile->head_a = NULL;
 	env->pile->head_b = NULL;
 }

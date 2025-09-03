@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/09/01 13:24:08 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/09/03 18:11:05 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRCS_PARSER = parser.c parser_utils.c
 
 SRCS_TRASH = error_handle.c 
 
-SRCS_SM = moves.c moves_utils.c
+SRCS_SM = moves.c moves_utils.c ops_helpers.c index_helper.c
 
-SRCS_ALGO = core.c cost.c driver.c driver_utils.c sort.c
+SRCS_ALGO = core.c cost.c cost_utils.c driver.c driver_utils.c sort.c
 
 SRCS_TESTER = unit_v2.c
 

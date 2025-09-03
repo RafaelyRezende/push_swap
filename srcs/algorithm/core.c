@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/03 12:30:29 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:58:07 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,33 +100,3 @@ int	ft_find_target_position_a(t_node *stack, int value)
 	}
 	return (0);
 }
-/*
-static
-int	ft_ismin_diff(t_node *current_node, int *current_min, int value)
-{
-	if (current_min
-}
-
-int	ft_find_target_position_a(t_node *stack, int value)
-{
-	t_node	*current_node;
-	int		current_min;
-	int		i;
-
-	if (!stack || !stack->next)
-		return (0);
-	if (ft_isbiggest(stack, value) || ft_issmallest(stack, value))
-		return (ft_max_pos(stack));
-	current_node = stack;
-	current_min = INT_MAX;
-	i = 0;
-	while (current_node && current_node->next)
-	{
-		if (ft_ismin_diff(current_node, &current_min, value))
-			return (i);
-		i++;
-		current_node = current_node->next;
-	}
-	return (0);
-}
-*/

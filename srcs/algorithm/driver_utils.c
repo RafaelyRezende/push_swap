@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 09:17:48 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 20:11:17 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:02:36 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,59 +28,6 @@ void	ft_init_sort(t_env *this)
 		counter++;
 	}
 }
-
-/*
-int	ft_find_min_diff(t_env *this)
-{
-	t_node	*current_a;
-	int		i;
-	int		val_diff;
-
-	if (!this || !this->pile || !this->pile->head_a || !this->pile->head_b)
-		return ;
-	current_a = this->pile->head_a;
-	i = 0;
-	while (i < this->pile->size_a)
-	{
-		val_diff = current_a - *(this->pile->head_b->value);
-		if (val_diff == 1)
-			return (i);
-		current_a = current_a->next;
-	}
-	return (-1);
-}
-void	ft_passthrough_a2b(t_env *this)
-{
-	int		cheapest;
-	t_node	*current;
-
-	if (!this || !this->pile || !this->pile->head_a)
-		return ;
-	while ()
-}
-int	ft_find_min_diff(t_env *this)
-{
-	t_node	*current_a;
-	t_node	*current_min;
-	int		i;
-	int		val_diff;
-
-	if (!this || !this->pile || !this->pile->head_a || !this->pile->head_b)
-		return (-1);
-	current_a = this->pile->head_a;
-	current_min = current_a;
-	i = 0;
-	while (i < this->pile->size_a)
-	{
-		val_diff = *(current_a->value) - *(this->pile->head_b->value);
-		if (val_diff > 0 && *(current_min->value) - *(this->pile->head_b->value) > val_diff)
-			current_min = current_a;
-		current_a = current_a->next;
-		i++;
-	}
-	return (current_min->idx);
-}
-*/
 
 void	ft_passthrough_a2b(t_env *this)
 
@@ -167,5 +114,5 @@ void	ft_end_position(t_env *this)
 			ft_printf("rra\n");
 			reverse_rotations_count--;
 		}
-	}	
+	}
 }
