@@ -6,15 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/03 18:14:35 by rluis-ya         ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2025/08/14 11:53:57 by rluis-ya         ###   ########.fr       */
-=======
-/*   Updated: 2025/08/18 21:04:13 by rluis-ya         ###   ########.fr       */
->>>>>>> feature/stack_moves
->>>>>>> origin/develop
+/*   Updated: 2025/09/03 18:54:00 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +55,6 @@ typedef struct s_env
 	int		size;
 	int		*nums;
 }	t_env;
-/******************************************************************************
- *************************    FUNCTIONS    ************************************
- *****************************************************************************/
 /* Helper functions */
 long long	ft_strtol(const char *nptr);
 int			ft_isdup(int n1, int *set, int size);
@@ -97,7 +86,8 @@ int			ft_issorted(t_node **head);
 int			ft_stack_size(t_node **head);
 void		ft_reset_index(t_node **head);
 /* Cost functions */
-void		ft_calculate_rotation_cost(int stack_size, int target_position, int *rotate, int *reverse_rotate);
+void		ft_calculate_rotation_cost(int stack_size, \
+int target_position, int *rotate, int *reverse_rotate);
 int			ft_find_target_position_b(t_node *stack, int value);
 int			ft_find_target_position_a(t_node *stack, int value);
 int			ft_isbiggest(t_node *stack, int value);

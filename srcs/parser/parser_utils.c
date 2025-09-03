@@ -6,15 +6,7 @@
 /*   By: rluis-ya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:23:32 by rluis-ya          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/02 18:45:19 by rluis-ya         ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2025/08/14 12:56:21 by rluis-ya         ###   ########.fr       */
-=======
-/*   Updated: 2025/08/14 16:19:16 by rluis-ya         ###   ########.fr       */
->>>>>>> feature/stack_moves
->>>>>>> origin/develop
+/*   Updated: 2025/09/03 20:29:25 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +27,8 @@ long long	ft_strtol(const char *nptr)
 			sign = -1;
 		nptr++;
 	}
+	if (!*nptr)
+		return (LONG_MAX);
 	while (*nptr)
 	{
 		if (!ft_isdigit(*nptr))

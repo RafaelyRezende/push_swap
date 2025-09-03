@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/09/03 18:11:05 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/09/03 18:55:20 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(LFT):
 	$(MAKE) -C libft
 
 $(NAME): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)
-	$(CC) $(CFLAGS) tester_main.c $^ -o $@
+	$(CC) $(CFLAGS) main.c $^ -o $@
 	@echo "🚀 Ready."
 
 $(UNIT): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)
