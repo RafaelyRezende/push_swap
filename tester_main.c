@@ -6,13 +6,13 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 18:49:57 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:30:07 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpushswap.h"
 
-static void ft_init_env(t_env *env);
+static void	ft_init_env(t_env *env);
 static void	ft_init_short(t_env *this, char **av);
 static void	ft_init_long(t_env *this, char **av);
 static int	ft_check_args(int ac, char **av, t_env *this);
@@ -26,25 +26,18 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (ft_create_piles(&this))
 		return (-1);
+	if (ft_issorted(&this.pile->head_a))
+		return (0);
 	ft_driver(&this);
-	//ft_display(&this);
 	ft_cleanup_env(&this);
 	return (0);
 }
 
-void	ft_display(t_env *env)
-{
-	ft_printf("\t\tStack A\n\n");
-	ft_print_stack(env->pile->head_a);
-	ft_printf("\n\t\tStack B\n\n");
-	ft_print_stack(env->pile->head_b);
-}
-
 static
-void ft_init_env(t_env *env)
+void	ft_init_env(t_env *env)
 {
 	if (!env)
-		return;
+		return ;
 	env->pile = NULL;
 	env->nums = NULL;
 	env->size = 0;
@@ -78,7 +71,7 @@ void	ft_init_long(t_env *this, char **av)
 	{
 		l_tmp = ft_strtol(av[i + 1]);
 		if (l_tmp == LONG_MAX)
-			return(ft_putstr_fd("Error\n", 2));
+			return (ft_putstr_fd("Error\n", 2));
 		this->nums[i] = (int)l_tmp;
 		if (ft_isdup(this->nums[i], this->nums, i) && i != 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:12:33 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 20:59:07 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:30:29 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_find_target_position_b(t_node *stack, int value)
 	}
 	return (0);
 }
-/*
+
 int	ft_find_target_position_a(t_node *stack, int value)
 {
 	t_node	*current;
@@ -88,7 +88,7 @@ int	ft_find_target_position_a(t_node *stack, int value)
 	if (!stack || !stack->next)
 		return (0);
 	if (ft_isbiggest(stack, value) || ft_issmallest(stack, value))
-		return (ft_max_pos(stack));
+		return (ft_min_pos(stack));
 	current = stack;
 	i = 0;
 	while (current && current->next)
@@ -100,24 +100,33 @@ int	ft_find_target_position_a(t_node *stack, int value)
 	}
 	return (0);
 }
-*/
+/*
+static
+int	ft_ismin_diff(t_node *current_node, int *current_min, int value)
+{
+	if (current_min
+}
+
 int	ft_find_target_position_a(t_node *stack, int value)
 {
-	t_node	*current;
+	t_node	*current_node;
+	int		current_min;
 	int		i;
 
 	if (!stack || !stack->next)
 		return (0);
 	if (ft_isbiggest(stack, value) || ft_issmallest(stack, value))
 		return (ft_max_pos(stack));
-	current = stack;
+	current_node = stack;
+	current_min = INT_MAX;
 	i = 0;
-	while (current && stack->next)
+	while (current_node && current_node->next)
 	{
-		if (*(current->value) > value)
+		if (ft_ismin_diff(current_node, &current_min, value))
 			return (i);
 		i++;
-		current = current->next;
+		current_node = current_node->next;
 	}
 	return (0);
 }
+*/

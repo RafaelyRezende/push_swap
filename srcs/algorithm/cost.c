@@ -6,13 +6,14 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 06:55:46 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/02 20:59:31 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:32:38 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpushswap.h"
 
-void	ft_calculate_rotation_cost(int stack_size, int target_position, int *rotate, int *reverse_rotate)
+void	ft_calculate_rotation_cost(int stack_size, \
+int target_position, int *rotate, int *reverse_rotate)
 {
 	if (stack_size < 2)
 	{
@@ -73,14 +74,13 @@ void	ft_get_total_cost(t_cost *cost)
 	else
 		cost->rrr = cost->rrb;
 	cost->total = cost->rr + cost->rrr + \
-	(cost->ra - cost->rr) + (cost->rb - cost->rr) + \
-	(cost->rra - cost->rrr) + (cost->rrb - cost->rrr) + \
-	cost->pb + cost->pa;
+(cost->ra - cost->rr) + (cost->rb - cost->rr) + \
+(cost->rra - cost->rrr) + (cost->rrb - cost->rrr) + \
+cost->pb + cost->pa;
 }
 
 int	ft_get_value_by_index(t_node *head, int idx)
 {
-
 	int		i;
 	t_node	*current;
 
