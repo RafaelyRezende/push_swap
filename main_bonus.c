@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:37:07 by rluis-ya          #+#    #+#             */
-/*   Updated: 2025/09/06 19:21:43 by rluis-ya         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:42:42 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@ int	main(int argc, char **argv)
 		ft_cleanup_env(&this);
 		return (-1);
 	}
-	if (ft_issorted(&this.pile->head_a))
-	{
-		ft_cleanup_env(&this);
-		return (0);
-	}
-	ft_driver(&this);
+	ft_checker(&this);
 	ft_cleanup_env(&this);
 	return (0);
 }
