@@ -6,11 +6,7 @@
 /*   By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:39:33 by rluis-ya          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/03 18:54:00 by rluis-ya         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/03 20:51:43 by rluis-ya         ###   ########.fr       */
->>>>>>> develop
+/*   Updated: 2025/09/06 12:30:36 by rluis-ya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +112,7 @@ void		ft_passthrough_b2a(t_env *this);
 void		ft_tinysort(t_node **head_a);
 void		ft_end_position(t_env *this);
 void		ft_display(t_env *env);
+/* Bonud functions */
+void		ft_checker(t_env *this);
+int			ft_driver_bonus(t_env *this, char *str);
 #endif

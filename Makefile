@@ -6,7 +6,7 @@
 #    By: rluis-ya <rluis-ya@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 17:30:31 by rluis-ya          #+#    #+#              #
-#    Updated: 2025/09/03 18:55:20 by rluis-ya         ###   ########.fr        #
+#    Updated: 2025/09/06 12:32:54 by rluis-ya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ endif
 NAME = push_swap
 
 UNIT = unit_test
+
+BONUS = checker
 
 SRC_DIR = srcs
 
@@ -60,11 +62,17 @@ all: $(NAME)
 
 unit: fclean $(UNIT)
 
+bonus: $(BONUS)
+
 $(LFT):
 	$(MAKE) -C libft
 
 $(NAME): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)
 	$(CC) $(CFLAGS) main.c $^ -o $@
+	@echo "🚀 Ready."
+
+$(BONUS): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) srcs/bonus/checker.c $(LFT)
+	$(CC) $(CFLAGS) main_bonus.c $^ -o $@
 	@echo "🚀 Ready."
 
 $(UNIT): $(PATH_PARSER) $(PATH_TRASH) $(PATH_SM) $(PATH_ALGO) $(LFT)
@@ -81,6 +89,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(UNIT)
+	@rm -f $(BONUS)
 	@$(MAKE) -C libft fclean
 	@echo "🗑️  Cleaned all."
 
